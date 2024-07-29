@@ -11,6 +11,10 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+    // Make sure Vite is serving JavaScript modules correctly
+    mimeTypes: {
+      '.js': 'application/javascript',
+    },
   },
   resolve: {
     alias: [
