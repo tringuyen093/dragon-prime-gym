@@ -33,11 +33,16 @@ jobs:
       run: npm run build
 
     - name: Deploy with gh-pages
-      run: |
-        git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-        npx gh-pages -d dist -u "github-actions-bot <support+actions@github.com>"
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
+        publish_branch: gh-pages  # Ensure the correct branch is used
+        user_name: github-actions-bot
+        user_email: support+actions@github.com
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Clean up deploy key
-      run: rm -f ~/.ssh/id_rsa ~/.ssh/id_rsa.pub
+    - name: Configure custom domain
+      run: |
+        echo 'dragonprimegym.vn' > ./dist/CNAME
