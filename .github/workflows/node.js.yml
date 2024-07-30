@@ -10,49 +10,34 @@ on:
     branches: [master]
 
 jobs:
-  build_and_predeploy:
-    name: Build and Predeploy
+  build:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-
-      - name: Build and predeploy project
-        run: npm run predeploy
-
-      - name: Upload production-ready build files
-        uses: actions/upload-artifact@v4
-        with:
-          name: production-files
-          path: ./dist
-
-  deploy:
-    name: Deploy
-    needs: build_and_predeploy
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    strategy:
+      matrix:
+        node-version: [18.x]
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: production-files
-          path: ./dist
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: npm run build
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist  # Path to the directory containing the built files
+        cname: dragonprimegym.vn  # Optional: if using a custom domain, remove if not
+
+    - name: Clean up deploy key
+      run: rm -f ~/.ssh/id_rsa ~/.ssh/id_rsa.pub
