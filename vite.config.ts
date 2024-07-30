@@ -6,8 +6,15 @@ import path from 'path'
 export default defineConfig({
   plugins: [react()],
   base: '/dragon-prime-gym/',
-  server: {
-    port: 3000,
+  build: {
+    outDir: 'dist',
+    rollupOptions: {
+      output: {
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]',
+      },
+    },
   },
   resolve: {
     alias: [
