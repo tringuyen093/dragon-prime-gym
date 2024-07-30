@@ -32,6 +32,10 @@ jobs:
     - name: Build project
       run: npm run build
 
+    - name: Configure custom domain
+      run: |
+        echo 'dragonprimegym.vn' > ./dist/CNAME
+
     - name: Deploy with gh-pages
       uses: peaceiris/actions-gh-pages@v4
       with:
@@ -43,6 +47,3 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Configure custom domain
-      run: |
-        echo 'dragonprimegym.vn' > ./dist/CNAME
