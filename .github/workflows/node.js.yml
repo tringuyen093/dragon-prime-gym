@@ -32,12 +32,12 @@ jobs:
     - name: Build project
       run: npm run build
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist  # Path to the directory containing the built files
-        cname: dragonprimegym.vn  # Optional: if using a custom domain, remove if not
+    - name: Deploy with gh-pages
+      run: |
+        git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+        npx gh-pages -d build -u "github-actions-bot <support+actions@github.com>"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Clean up deploy key
       run: rm -f ~/.ssh/id_rsa ~/.ssh/id_rsa.pub
