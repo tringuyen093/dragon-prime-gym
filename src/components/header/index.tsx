@@ -193,6 +193,10 @@ const MenuMobileWrapper = styled.div<{ toggle: boolean }>`
 
     .menu-item {
       padding: var(--space-xs) var(--space-2sm);
+
+      a {
+        color: var(--color-black);
+      }
     }
   }
 
