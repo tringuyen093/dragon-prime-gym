@@ -256,7 +256,7 @@ interface Menu {
   children: SubMenu[]
 }
 
-const menus: Menu = [
+const menus: Menu[] = [
   {
     name: 'Equipments',
     url: '/equipments/eleiko',
@@ -275,7 +275,10 @@ const menus: Menu = [
 
 const MenuMobile: React.FC<MenuMobile> = ({ toggle, onToggleMenu }) => {
   const { pathname } = useLocation()
-  const mobileMenus: Menu = [{ name: 'Home', url: '/', children: [] }, ...menus]
+  const mobileMenus: Menu[] = [
+    { name: 'Home', url: '/', children: [] },
+    ...menus,
+  ]
 
   return (
     <MenuMobileWrapper toggle={toggle || ''}>
@@ -293,7 +296,7 @@ const MenuMobile: React.FC<MenuMobile> = ({ toggle, onToggleMenu }) => {
 
               {children && (
                 <div className='submenu'>
-                  {children.map((subMenu, subIdx) => (
+                  {children.map((subMenu: SubMenu, subIdx: number) => (
                     <Link
                       to={subMenu.url}
                       key={subIdx}
