@@ -241,7 +241,22 @@ const MenuMobileWrapper = styled.div<{ toggle: boolean | string }>`
   }
 `
 
-const menus = [
+interface MenuMobile {
+  toggle: boolean
+  onToggleMenu: () => void
+}
+
+interface SubMenu {
+  name: string
+  url: string
+}
+interface Menu {
+  name: string
+  url: string
+  children: SubMenu[]
+}
+
+const menus: Menu = [
   {
     name: 'Equipments',
     url: '/equipments/eleiko',
@@ -258,14 +273,9 @@ const menus = [
   },
 ]
 
-interface MenuMobile {
-  toggle: boolean
-  onToggleMenu: () => void
-}
-
 const MenuMobile: React.FC<MenuMobile> = ({ toggle, onToggleMenu }) => {
   const { pathname } = useLocation()
-  const mobileMenus = [{ name: 'Home', url: '/' }, ...menus]
+  const mobileMenus: Menu = [{ name: 'Home', url: '/', children: [] }, ...menus]
 
   return (
     <MenuMobileWrapper toggle={toggle || ''}>
