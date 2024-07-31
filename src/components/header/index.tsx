@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { Link } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import mediaQuery from '@/utils/units/mediaQuery'
 import useResize from '@/hooks/useResize'
 import styled from 'styled-components'
@@ -16,24 +16,30 @@ const HeaderWrapper = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 0 var(--space-3xl);
+    padding: var(--space-xs) var(--space-lg);
     transition: all 300ms ease;
-    min-height: 100px;
-    margin: 0 auto;
+    min-height: 80px;
+    background-color: var(--color-gray-800);
   }
 
   .logo {
     display: flex;
     align-items: center;
     margin-right: var(--space-3xl);
+    padding-left: var(--space-lg);
 
-    a:hover {
-      opacity: 1;
+    a {
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        opacity: 1;
+      }
     }
 
     img {
       transition: all 300ms ease;
-      width: 300px;
+      width: 200px;
     }
   }
 
@@ -42,22 +48,50 @@ const HeaderWrapper = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    margin-left: 140px;
+    margin-left: var(--space-4xl);
 
     .menu-item {
       cursor: pointer;
+      position: relative;
       text-transform: capitalize;
       transition: all 400ms ease;
       font-family: 'Montserrat Medium';
-      font-size: var(--font-size-md);
-      padding: 0px var(--space-xl);
+      font-size: var(--font-size-2sm);
+      padding: var(--space-lg) var(--space-xl);
 
       a {
         color: var(--color-white);
       }
 
+      .submenu {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: var(--space-xl);
+        z-index: 1000;
+        transition: all 400ms ease;
+
+        .submenu-active {
+          overflow: hidden;
+          border-radius: var(--obj-radius-sm);
+
+          .submenu-item {
+            display: block;
+            white-space: nowrap;
+            padding: var(--space-sm);
+            background: var(--color-black);
+          }
+        }
+
+        .submenu-hidden {
+          padding: var(--space-2sm);
+        }
+      }
+
       &:hover {
-        opacity: 0.8;
+        .submenu {
+          display: block;
+        }
       }
     }
   }
@@ -175,7 +209,7 @@ const HeaderMobileWrapper = styled.div`
   }
 `
 
-const MenuMobileWrapper = styled.div<{ toggle: boolean }>`
+const MenuMobileWrapper = styled.div<{ toggle: boolean | string }>`
   width: 100%;
   height: 100%;
   background: var(--color-white);
@@ -207,23 +241,47 @@ const MenuMobileWrapper = styled.div<{ toggle: boolean }>`
   }
 `
 
-const menus = [
-  {
-    name: 'Equipments',
-    url: '/equipments',
-  },
-]
-
 interface MenuMobile {
   toggle: boolean
   onToggleMenu: () => void
 }
 
+interface SubMenu {
+  name: string
+  url: string
+}
+interface Menu {
+  name: string
+  url: string
+  children: SubMenu[]
+}
+
+const menus: Menu[] = [
+  {
+    name: 'Equipments',
+    url: '/equipments/eleiko',
+    children: [
+      {
+        name: 'Eleiko',
+        url: '/equipments/eleiko',
+      },
+      {
+        name: 'Powerlifting Bars',
+        url: '/equipments/powerlifting-bars',
+      },
+    ],
+  },
+]
+
 const MenuMobile: React.FC<MenuMobile> = ({ toggle, onToggleMenu }) => {
-  const mobileMenus = [{ name: 'Home', url: '/' }, ...menus]
+  const { pathname } = useLocation()
+  const mobileMenus: Menu[] = [
+    { name: 'Home', url: '/', children: [] },
+    ...menus,
+  ]
 
   return (
-    <MenuMobileWrapper toggle={toggle}>
+    <MenuMobileWrapper toggle={toggle || ''}>
       <div className='menu-toggle expanded' onClick={onToggleMenu}>
         <span className='line-toggle' />
         <span className='line-toggle' />
@@ -231,10 +289,26 @@ const MenuMobile: React.FC<MenuMobile> = ({ toggle, onToggleMenu }) => {
       </div>
 
       <div className='menu'>
-        {mobileMenus.map(({ name, url }, idx) => {
+        {mobileMenus.map(({ name, url, children }, idx) => {
           return (
             <div className='menu-item' key={idx} onClick={onToggleMenu}>
               <Link to={url}>{name}</Link>
+
+              {children && (
+                <div className='submenu'>
+                  {children.map((subMenu: SubMenu, subIdx: number) => (
+                    <Link
+                      to={subMenu.url}
+                      key={subIdx}
+                      className={`submenu-item ${
+                        pathname === subMenu.url ? 'active' : ''
+                      }`}
+                    >
+                      {subMenu.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
           )
         })}
@@ -268,25 +342,48 @@ const HeaderMobile = () => {
   )
 }
 
-const HeaderDesktop = () => (
-  <div className='container'>
-    <div className='logo'>
-      <Link to='/'>
-        <img src={logo} alt='dragonprime-logo' />
-      </Link>
-    </div>
+const HeaderDesktop = () => {
+  const { pathname } = useLocation()
 
-    <div className='menu'>
-      {menus.map(({ name, url }, idx) => {
-        return (
-          <div className='menu-item' key={idx}>
-            <Link to={url}>{name}</Link>
-          </div>
-        )
-      })}
+  return (
+    <div className='container'>
+      <div className='logo'>
+        <Link to='/'>
+          <img src={logo} alt='dragonprime-logo' />
+        </Link>
+      </div>
+
+      <div className='menu'>
+        {menus.map(({ name, url, children }, idx) => {
+          return (
+            <div className='menu-item' key={idx}>
+              <Link to={url}>{name}</Link>
+
+              {children && (
+                <div className='submenu'>
+                  <div className='submenu-hidden' />
+                  <div className='submenu-active'>
+                    {children.map((subMenu, subIdx) => (
+                      <Link
+                        to={subMenu.url}
+                        key={subIdx}
+                        className={`submenu-item ${
+                          pathname === subMenu.url ? 'active' : ''
+                        }`}
+                      >
+                        {subMenu.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 const Header = () => {
   const [scrollY, setScrollY] = useState(0)

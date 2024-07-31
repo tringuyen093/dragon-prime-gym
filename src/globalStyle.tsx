@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import { hexToRgbA as rgba, lighten } from './utils/units';
+import { css } from '@emotion/react'
+import { hexToRgbA as rgba, lighten } from './utils/units'
 
 export const GlobalStyle = () =>
   css`
@@ -8,6 +8,7 @@ export const GlobalStyle = () =>
       --font-size-2xs: 12px;
       --font-size-xs: 13px;
       --font-size-sm: 15px;
+      --font-size-2sm: 16px;
       --font-size-md: 18px;
       --font-size-lg: 20px;
       --font-size-xl: 24px;
@@ -42,9 +43,8 @@ export const GlobalStyle = () =>
       --space-lg: 24px;
       --space-xl: 32px;
       --space-2xl: 36px;
-      --space-3xl: 50px;
-      --space-4xl: 80px;
-      --space-5xl: 100px;
+      --space-3xl: 48px;
+      --space-4xl: 96px;
       --obj-radius-xs: 3px;
       --obj-radius-sm: 5px;
       --obj-radius-lg: 7px;
@@ -259,7 +259,9 @@ export const GlobalStyle = () =>
       --color-background-base-coaster: var(--color-white-alpha-80);
       --color-background-base-coaster-hover: var(--color-white);
       --color-background-base-coaster-onMedia: var(--color-black-alpha-20);
-      --color-background-base-coaster-onMedia-hover: var(--color-black-alpha-40);
+      --color-background-base-coaster-onMedia-hover: var(
+        --color-black-alpha-40
+      );
       --color-background-base-coaster-onMedia-alt: var(--color-white-alpha-40);
       --color-background-base-negative: var(--color-gray-900);
       --color-background-base-stillness: var(--color-white);
@@ -270,7 +272,9 @@ export const GlobalStyle = () =>
       --color-background-base-brandSoft: var(--color-cyan-700-alpha-10);
       --color-background-base-brandSoft-alt: var(--color-lineGreen-alpha-4);
       --color-background-base-significant: var(--color-red-600);
-      --color-background-base-significant-onMedia: var(--color-red-600-alpha-80);
+      --color-background-base-significant-onMedia: var(
+        --color-red-600-alpha-80
+      );
       --color-background-base-significantSoft: var(--color-red-600-alpha-8);
       --color-background-base-popular: var(--color-orange-600);
       --color-background-base-popular-onMedia: var(--color-orange-600-alpha-80);
@@ -281,18 +285,42 @@ export const GlobalStyle = () =>
       --color-background-base-solemn: var(--color-gray-750);
       --color-background-base-ai: var(--color-gray-600);
       --color-background-badge-primary-onMedia: var(--color-black-alpha-80);
-      --color-background-button-primary-enabled-hover: var(--color-lineGreen-alpha-70);
-      --color-background-button-primary-enabled-active: var(--color-lineGreen-alpha-50);
-      --color-background-button-primary-activated-hover: var(--color-black-alpha-12);
-      --color-background-button-primary-activated-active: var(--color-black-alpha-20);
-      --color-background-button-secondary-enabled-hover: var(--color-lineGreen-alpha-10);
-      --color-background-button-secondary-enabled-active: var(--color-lineGreen-alpha-20);
-      --color-background-button-tertiary-enabled-hover: var(--color-black-alpha-12);
-      --color-background-button-tertiary-enabled-active: var(--color-black-alpha-20);
-      --color-background-button-tertiary-activated-hover: var(--color-black-alpha-80);
-      --color-background-button-tertiary-activated-active: var(--color-black-alpha-60);
-      --color-background-button-quaternary-enabled-hover: var(--color-black-alpha-4);
-      --color-background-button-quaternary-enabled-active: var(--color-black-alpha-12);
+      --color-background-button-primary-enabled-hover: var(
+        --color-lineGreen-alpha-70
+      );
+      --color-background-button-primary-enabled-active: var(
+        --color-lineGreen-alpha-50
+      );
+      --color-background-button-primary-activated-hover: var(
+        --color-black-alpha-12
+      );
+      --color-background-button-primary-activated-active: var(
+        --color-black-alpha-20
+      );
+      --color-background-button-secondary-enabled-hover: var(
+        --color-lineGreen-alpha-10
+      );
+      --color-background-button-secondary-enabled-active: var(
+        --color-lineGreen-alpha-20
+      );
+      --color-background-button-tertiary-enabled-hover: var(
+        --color-black-alpha-12
+      );
+      --color-background-button-tertiary-enabled-active: var(
+        --color-black-alpha-20
+      );
+      --color-background-button-tertiary-activated-hover: var(
+        --color-black-alpha-80
+      );
+      --color-background-button-tertiary-activated-active: var(
+        --color-black-alpha-60
+      );
+      --color-background-button-quaternary-enabled-hover: var(
+        --color-black-alpha-4
+      );
+      --color-background-button-quaternary-enabled-active: var(
+        --color-black-alpha-12
+      );
       --color-background-chip-enabled-hover: var(--color-black-alpha-12);
       --color-background-chip-enabled-active: var(--color-black-alpha-20);
       --color-background-chip-activated-hover: var(--color-black-alpha-80);
@@ -387,8 +415,12 @@ export const GlobalStyle = () =>
       --theme-background-fortune-green-hover: var(--color-cyan-700-alpha-20);
       --theme-background-fortune-green-active: var(--color-cyan-700-alpha-32);
       --theme-background-fortune-purple: var(--color-deepPurple-800-alpha-12);
-      --theme-background-fortune-purple-hover: var(--color-deepPurple-800-alpha-20);
-      --theme-background-fortune-purple-active: var(--color-deepPurple-800-alpha-32);
+      --theme-background-fortune-purple-hover: var(
+        --color-deepPurple-800-alpha-20
+      );
+      --theme-background-fortune-purple-active: var(
+        --color-deepPurple-800-alpha-32
+      );
       --theme-background-fortune-magenta: var(--color-red-500-alpha-12);
       --theme-background-fortune-magenta-hover: var(--color-red-500-alpha-20);
       --theme-background-fortune-magenta-active: var(--color-red-500-alpha-32);
@@ -473,6 +505,6 @@ export const GlobalStyle = () =>
       --media-timer-empty: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjE2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBjbGlwLXBhdGg9InVybCgjY2xpcDBfOTQwMl8zMTM1NDIpIj48cGF0aCBmaWxsPSIjMDAwIiBmaWxsLW9wYWNpdHk9Ii4yIiBkPSJNMCAwaDE2MHYxNjBIMHoiLz48cGF0aCBkPSJNODIuODExIDc4LjM3N1Y1OC4wMDFINzcuMTl2MjMuNjJsMTUuMjQ0IDguODAyIDIuODExLTQuODY4LTEyLjQzMy03LjE3OHoiIGZpbGw9IiNmZmYiLz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTgwIDQwYy0yMi4wOTEgMC00MCAxNy45MDktNDAgNDBzMTcuOTA5IDQwIDQwIDQwIDQwLTE3LjkwOSA0MC00MC0xNy45MDktNDAtNDAtNDB6bTAgNS42MjFjMTguOTg3IDAgMzQuMzc5IDE1LjM5MiAzNC4zNzkgMzQuMzc4IDAgMTguOTg3LTE1LjM5MiAzNC4zNzktMzQuMzc4IDM0LjM3OS0xOC45ODcgMC0zNC4zNzktMTUuMzkyLTM0LjM3OS0zNC4zNzkgMC0xOC45ODYgMTUuMzkyLTM0LjM3OCAzNC4zNzktMzQuMzc4eiIgZmlsbD0iI2ZmZiIvPjwvZz48ZGVmcz48Y2xpcFBhdGggaWQ9ImNsaXAwXzk0MDJfMzEzNTQyIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMCAwaDE2MHYxNjBIMHoiLz48L2NsaXBQYXRoPjwvZGVmcz48L3N2Zz4=');
       --media-thirdPartyMedia-empty: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwIiBoZWlnaHQ9IjE2MCIgdmlld0JveD0iMCAwIDE2MCAxNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMF8zMjk4XzQyMzg0KSI+CjxyZWN0IHdpZHRoPSIxNjAiIGhlaWdodD0iMTYwIiBmaWxsPSIjRUZFRkVGIi8+CjxwYXRoIGQ9Ik05Mi4zMjYxIDcwLjQ3NTNIOTUuMjYwOUM5Ni42ODQ3IDcwLjQ3NTMgOTcuODU0NyA3MS41NTQ2IDk3Ljk4NzUgNzIuOTM0Nkw5OCA3My4xOTY2VjkyLjYzNDhDOTggOTUuMDgwNCA5Ni4xMDYgOTcuMDg2NCA5My42OTU5IDk3LjI4NEw5My42OTU3IDk3LjNIOTMuNUw5My40MDA1IDk3LjI5ODZMOTMuMzA0MyA5Ny4zSDY5LjIzOTFDNjUuMjQxMSA5Ny4zIDYyIDk0LjA4IDYyIDkwLjEwNzlWNjUuNDIxNEM2MiA2My45MTg0IDYzLjIyNjQgNjIuNyA2NC43MzkxIDYyLjdIODkuNTg3QzkxLjA5OTcgNjIuNyA5Mi4zMjYxIDYzLjkxODQgOTIuMzI2MSA2NS40MjE0VjcwLjQ3NTNaTTg4LjgwNDMgNjYuMTk4OUg2NS41MTk4TDY1LjUyMTcgOTAuMTA3OUM2NS41MjE3IDkyLjA1MDUgNjcuMDMxMyA5My42NDI4IDY4Ljk0ODYgOTMuNzlMNjkuMjM5MSA5My44MDExTDg4Ljk1MjMgOTMuODAxMkM4OC44ODE1IDkzLjUyNzggODguODM0OSA5My4yNDQ3IDg4LjgxNTIgOTIuOTU0Mkw4OC44MDQzIDkyLjYzNDhWNjYuMTk4OVpNOTIuMzI2MSA5Mi42MzQ4QzkyLjMyNjEgOTMuMjE0NiA5Mi43NTE4IDkzLjY5NTUgOTMuMzA5NiA5My43ODU5TDkzLjQyMjkgOTMuNzk1M0M5NC4wMTU2IDkzLjczNjIgOTQuNDc4MyA5My4yMzkyIDk0LjQ3ODMgOTIuNjM0OEw5NC40NzYzIDczLjk3NDJMOTIuMzI1OSA3My45NzQxTDkyLjMyNjEgOTIuNjM0OFpNODQuMTA4NyA4NS4yNDgzVjg4Ljc0NzJINzAuNDEzVjg1LjI0ODNIODQuMTA4N1pNODQuMTA4NyA3Ny44NjE4VjgxLjM2MDdINzAuNDEzVjc3Ljg2MThIODQuMTA4N1pNODQuMTA4NyA3MC40NzUzVjczLjk3NDJINzAuNDEzVjcwLjQ3NTNIODQuMTA4N1oiIGZpbGw9IiNDOEM4QzgiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF8zMjk4XzQyMzg0Ij4KPHJlY3Qgd2lkdGg9IjE2MCIgaGVpZ2h0PSIxNjAiIGZpbGw9IndoaXRlIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+Cg==');
     }
-  `;
+  `
 
-export default GlobalStyle;
+export default GlobalStyle

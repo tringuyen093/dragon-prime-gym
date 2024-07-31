@@ -1,7 +1,7 @@
-import { css } from '@emotion/react';
-import '@/assets/fonts/Montserrat/stylesheet.css';
-import '@/assets/fonts/UKIJTuzTor/stylesheet.css';
-import '@/assets/fonts/CaslonTwoBlackSSK/stylesheet.css';
+import { css } from '@emotion/react'
+import '@/assets/fonts/Montserrat/stylesheet.css'
+import '@/assets/fonts/UKIJTuzTor/stylesheet.css'
+import '@/assets/fonts/CaslonTwoBlackSSK/stylesheet.css'
 
 export const style = () =>
   css`
@@ -71,6 +71,6 @@ export const style = () =>
         background-color: #f9f9f9;
       }
     }
-  `;
+  `
 
-export default style;
+export default style
