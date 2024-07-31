@@ -8,6 +8,7 @@ export const GlobalStyle = () =>
       --font-size-2xs: 12px;
       --font-size-xs: 13px;
       --font-size-sm: 15px;
+      --font-size-2sm: 16px;
       --font-size-md: 18px;
       --font-size-lg: 20px;
       --font-size-xl: 24px;

@@ -15,16 +15,12 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 const MainWrapper = styled.div`
   width: 100vw;
-  height: 100vh;
-`
-
-const LoadingWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
+  padding-top: 100px;
+  height: calc(100vh - 100px);
 `
 
 const Loading = () => {
-  return <LoadingWrapper />
+  return <MainWrapper />
 }
 
 const RootApp = () => {

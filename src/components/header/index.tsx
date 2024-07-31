@@ -15,9 +15,8 @@ const HeaderWrapper = styled.div`
   .container {
     display: flex;
     align-items: center;
-    width: calc(100% - var(--space-4xl));
-    margin: var(--space-lg);
-    padding: var(--space-lg);
+    width: 100%;
+    padding: var(--space-xs) var(--space-lg);
     transition: all 300ms ease;
     min-height: 80px;
     background-color: var(--color-gray-800);
@@ -29,13 +28,18 @@ const HeaderWrapper = styled.div`
     margin-right: var(--space-3xl);
     padding-left: var(--space-lg);
 
-    a:hover {
-      opacity: 1;
+    a {
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        opacity: 1;
+      }
     }
 
     img {
       transition: all 300ms ease;
-      width: 250px;
+      width: 200px;
     }
   }
 
@@ -52,38 +56,39 @@ const HeaderWrapper = styled.div`
       text-transform: capitalize;
       transition: all 400ms ease;
       font-family: 'Montserrat Medium';
-      font-size: var(--font-size-md);
+      font-size: var(--font-size-2sm);
       padding: var(--space-lg) var(--space-xl);
 
       a {
         color: var(--color-white);
-        font-family: 'Rampart One';
       }
 
       .submenu {
         display: none;
         position: absolute;
-        top: var(--space-3xl);
-        left: 0;
-        background: transparent;
-        padding: 0px var(--space-xl);
+        top: 60px;
+        left: var(--space-xl);
         z-index: 1000;
         transition: all 400ms ease;
-      }
 
-      .submenu-item {
-        display: block;
-        padding-top: var(--space-xl);
-        white-space: nowrap;
-      }
+        .submenu-active {
+          overflow: hidden;
+          border-radius: var(--obj-radius-sm);
 
-      .submenu-item.active {
-        opacity: 0.8;
+          .submenu-item {
+            display: block;
+            white-space: nowrap;
+            padding: var(--space-sm);
+            background: var(--color-black);
+          }
+        }
+
+        .submenu-hidden {
+          padding: var(--space-2sm);
+        }
       }
 
       &:hover {
-        opacity: 0.8;
-
         .submenu {
           display: block;
         }
@@ -343,17 +348,20 @@ const HeaderDesktop = () => {
 
               {children && (
                 <div className='submenu'>
-                  {children.map((subMenu, subIdx) => (
-                    <Link
-                      to={subMenu.url}
-                      key={subIdx}
-                      className={`submenu-item ${
-                        pathname === subMenu.url ? 'active' : ''
-                      }`}
-                    >
-                      {subMenu.name}
-                    </Link>
-                  ))}
+                  <div className='submenu-hidden' />
+                  <div className='submenu-active'>
+                    {children.map((subMenu, subIdx) => (
+                      <Link
+                        to={subMenu.url}
+                        key={subIdx}
+                        className={`submenu-item ${
+                          pathname === subMenu.url ? 'active' : ''
+                        }`}
+                      >
+                        {subMenu.name}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
