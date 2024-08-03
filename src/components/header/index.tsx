@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import mediaQuery from '@/utils/units/mediaQuery'
 import useResize from '@/hooks/useResize'
 import styled from 'styled-components'
 import logo from '@/assets/images/dragonprime-logo-white.png'
@@ -12,15 +11,24 @@ const HeaderWrapper = styled.div`
   left: 0;
   z-index: 99;
 
-  .container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: var(--space-xs) var(--space-lg);
-    transition: all 300ms ease;
-    min-height: 80px;
-    background-color: var(--color-gray-800);
+  .menu-item {
+    cursor: pointer;
+    position: relative;
+    text-transform: capitalize;
+    transition: all 400ms ease;
+    font-family: 'Montserrat Medium';
+    font-size: var(--font-size-2sm);
   }
+`
+
+const HeaderDesktopWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 80px;
+  transition: all 300ms ease;
+  padding: var(--space-xs) var(--space-lg);
+  background-color: var(--color-gray-850);
 
   .logo {
     display: flex;
@@ -51,12 +59,6 @@ const HeaderWrapper = styled.div`
     margin-left: var(--space-4xl);
 
     .menu-item {
-      cursor: pointer;
-      position: relative;
-      text-transform: capitalize;
-      transition: all 400ms ease;
-      font-family: 'Montserrat Medium';
-      font-size: var(--font-size-2sm);
       padding: var(--space-lg) var(--space-xl);
 
       a {
@@ -95,39 +97,6 @@ const HeaderWrapper = styled.div`
       }
     }
   }
-
-  .scrolling {
-    .container {
-      min-height: 70px;
-    }
-
-    .logo {
-      img {
-        width: 80px;
-      }
-    }
-  }
-
-  ${mediaQuery['belowBiggerDesktop']} {
-    .menu {
-      margin-left: 0px;
-    }
-  }
-
-  ${mediaQuery['belowDesktop']} {
-    .container {
-      width: calc(100% - 40px);
-      margin: 0 var(--space-2sm);
-    }
-  }
-
-  ${mediaQuery['belowTablet']} {
-    .logo {
-      img {
-        width: 200px;
-      }
-    }
-  }
 `
 
 const HeaderMobileWrapper = styled.div`
@@ -137,13 +106,11 @@ const HeaderMobileWrapper = styled.div`
   width: 100%;
   transition: all 300ms ease;
   min-height: 80px;
-  margin: 0 auto;
+  padding: var(--space-2xs) 0;
 
   .logo {
-    margin-right: 0;
-
     img {
-      padding: var(--space-3xs) 0;
+      width: 200px;
     }
   }
 
@@ -155,7 +122,7 @@ const HeaderMobileWrapper = styled.div`
     background: var(--color-white);
     position: absolute;
     right: var(--space-sm);
-    top: var(--space-lg);
+    top: var(--space-2xl);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -188,7 +155,7 @@ const HeaderMobileWrapper = styled.div`
   }
 
   .menu-toggle.expanded .line-toggle:first-child {
-    background: var(--color-gray-750);
+    background: var(--color-white);
     transform: translateY(0) translateX(0) rotate(45deg);
     width: var(--space-lg);
     height: var(--obj-radius-xs);
@@ -201,7 +168,7 @@ const HeaderMobileWrapper = styled.div`
   }
 
   .menu-toggle.expanded .line-toggle:last-child {
-    background: var(--color-gray-750);
+    background: var(--color-white);
     transform: translateY(0) translateX(0) rotate(314deg);
     width: var(--space-lg);
     height: var(--obj-radius-xs);
@@ -210,9 +177,10 @@ const HeaderMobileWrapper = styled.div`
 `
 
 const MenuMobileWrapper = styled.div<{ toggle: boolean | string }>`
+  max-width: 400px;
   width: 100%;
   height: 100%;
-  background: var(--color-white);
+  background: var(--color-gray-850);
   position: fixed;
   left: ${({ toggle }) => (toggle ? '0px' : '-1500px')};
   top: 0;
@@ -222,22 +190,37 @@ const MenuMobileWrapper = styled.div<{ toggle: boolean | string }>`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-top: var(--space-xl);
+    padding-top: var(--space-lg);
     padding-left: var(--space-lg);
 
     .menu-item {
-      padding: var(--space-xs) var(--space-2sm);
+      display: flex;
+      flex-direction: column;
 
       a {
-        color: var(--color-black);
+        padding: var(--space-xs) var(--space-2sm);
+        color: var(--color-white);
+      }
+
+      .submenu {
+        display: none;
+        flex-direction: column;
+        margin-left: var(--space-2sm);
+      }
+
+      &:hover {
+        .submenu {
+          display: flex;
+        }
       }
     }
   }
 
   .menu-toggle.expanded {
     position: absolute;
+    background-color: transparent;
     right: var(--space-sm);
-    top: var(--space-lg);
+    top: var(--space-2xl);
   }
 `
 
@@ -328,10 +311,7 @@ const HeaderMobile = () => {
         </Link>
       </div>
 
-      <div
-        className={`menu-toggle ${toggle ? 'expanded' : ''}`}
-        onClick={() => setToggle(!toggle)}
-      >
+      <div className='menu-toggle' onClick={() => setToggle(!toggle)}>
         <span className='line-toggle' />
         <span className='line-toggle' />
         <span className='line-toggle' />
@@ -346,7 +326,7 @@ const HeaderDesktop = () => {
   const { pathname } = useLocation()
 
   return (
-    <div className='container'>
+    <HeaderDesktopWrapper>
       <div className='logo'>
         <Link to='/'>
           <img src={logo} alt='dragonprime-logo' />
@@ -381,7 +361,7 @@ const HeaderDesktop = () => {
           )
         })}
       </div>
-    </div>
+    </HeaderDesktopWrapper>
   )
 }
 
