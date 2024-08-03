@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Global } from '@emotion/react'
 import { GlobalStyle } from '@/globalStyle'
 import { Helmet } from 'react-helmet'
+import mediaQuery from '@/utils/units/mediaQuery'
 import styled from 'styled-components'
 import style from '@/style'
 import App from '@/App.tsx'
@@ -17,6 +18,11 @@ const MainWrapper = styled.div`
   width: 100vw;
   padding-top: 100px;
   height: calc(100vh - 100px);
+
+  ${mediaQuery['belowDesktop']} {
+    padding-top: 0px;
+    height: 100vh;
+  }
 `
 
 const Loading = () => {
