@@ -1,4 +1,4 @@
-import{d as a,j as e}from"./index.NvKP4GHZ.js";import{S as r,A as i,N as n,a as o,_ as p}from"./navigation.ClMh5Ltn.js";const l="/assets/1.Cpurn5vR.jpg",c="/assets/2.D2au5KMF.jpg",d="/assets/3.CfP5i3OM.jpg",u=a.div`
+import{d as a,j as e}from"./index.PGZ77osR.js";import{S as r,A as i,N as n,a as o,_ as p}from"./navigation.Cu8TE0Y2.js";const l="/assets/1.Cpurn5vR.jpg",c="/assets/2.D2au5KMF.jpg",d="/assets/3.CfP5i3OM.jpg",u=a.div`
   width: 100%;
   height: 100%;
 
