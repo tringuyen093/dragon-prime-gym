@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import banner from '@/assets/images/equipments/1.jpg';
+import banner from '@/assets/images/background/1.jpg';
 
 const ContainerWrapper = styled.div`
   display: flex;
