@@ -3,7 +3,7 @@ import banner from '@/assets/images/equipments/1.jpg';
 
 const ContainerWrapper = styled.div`
   display: flex;
-  width: 100%;
+  width: 90%;
   height: 100%;
   background-image: url(${banner});
   background-size: cover;
