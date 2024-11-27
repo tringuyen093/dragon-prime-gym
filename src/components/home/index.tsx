@@ -6,7 +6,7 @@ const ContainerWrapper = styled.div`
   width: 90%;
   height: 90%;
   background-image: url(${banner});
-  background-size: cover;
+  background-size: contain;
   background-position: center bottom;
   color: white;
 
