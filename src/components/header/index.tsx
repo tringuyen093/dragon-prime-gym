@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { useLocation, Link } from 'react-router-dom'
+import {
+  EQUIPMENT_ELEIKO_URL,
+  EQUIPMENT_POWERLIFTING_BARS_URL,
+  PRODUCT_COMBO_RACK_URL
+} from '@/router/common'
 import useResize from '@/hooks/useResize'
 import styled from 'styled-components'
 import logo from '@/assets/images/dragonprime-logo-white.png'
@@ -241,16 +246,26 @@ interface Menu {
 
 const menus: Menu[] = [
   {
-    name: 'Equipments',
-    url: '/equipments/eleiko',
+    name: 'Equipment',
+    url: EQUIPMENT_ELEIKO_URL,
     children: [
       {
         name: 'Eleiko',
-        url: '/equipments/eleiko',
+        url: EQUIPMENT_ELEIKO_URL,
       },
       {
         name: 'Powerlifting Bars',
-        url: '/equipments/powerlifting-bars',
+        url: EQUIPMENT_POWERLIFTING_BARS_URL,
+      },
+    ],
+  },
+  {
+    name: 'Product',
+    url: PRODUCT_COMBO_RACK_URL,
+    children: [
+      {
+        name: 'Combo Rack',
+        url: PRODUCT_COMBO_RACK_URL,
       },
     ],
   },
