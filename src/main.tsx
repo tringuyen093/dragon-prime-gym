@@ -11,6 +11,8 @@ import style from '@/style'
 import App from '@/App.tsx'
 import Header from '@/components/header'
 import './style.ts'
+import 'swiper/css'
+import 'swiper/css/navigation'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
