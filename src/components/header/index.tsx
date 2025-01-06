@@ -245,7 +245,7 @@ interface SubMenu {
 interface Menu {
   name: string
   url: string
-  children: SubMenu[]
+  children?: SubMenu[]
 }
 
 const menus: Menu[] = [
