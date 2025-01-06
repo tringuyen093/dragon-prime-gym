@@ -7,10 +7,10 @@ const ContainerWrapper = styled.div`
   height: 100%;
   background-image: url(${banner});
   background-size: cover;
-  background-position: center top;
+  background-position: center bottom;
 
   @media (max-width: 768px) {
-    background-position: left top;
+    background-position: left bottom;
   }
 `;
 

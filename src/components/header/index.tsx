@@ -3,7 +3,11 @@ import { useLocation, Link } from 'react-router-dom'
 import {
   EQUIPMENT_ELEIKO_URL,
   EQUIPMENT_POWERLIFTING_BARS_URL,
-  PRODUCT_COMBO_RACK_URL
+  PRODUCT_COMBO_RACK_URL,
+  TRAINING_GYM_URL,
+  TRAINING_YOGA_URL,
+  TRAINING_POWERLIFTING_URL,
+  ABOUT_US_URL
 } from '@/router/common'
 import useResize from '@/hooks/useResize'
 import styled from 'styled-components'
@@ -268,6 +272,28 @@ const menus: Menu[] = [
         url: PRODUCT_COMBO_RACK_URL,
       },
     ],
+  },
+  {
+    name: 'Training',
+    url: TRAINING_YOGA_URL,
+    children: [
+      {
+        name: 'Gym',
+        url: TRAINING_GYM_URL,
+      },
+      {
+        name: 'Yoga',
+        url: TRAINING_YOGA_URL,
+      },
+      {
+        name: 'Powerlifting',
+        url: TRAINING_POWERLIFTING_URL,
+      },
+    ],
+  },
+  {
+    name: 'About Us',
+    url: ABOUT_US_URL,
   },
 ]
 
